@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { medicineAPI, ordersAPI } from '../api';
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -20,38 +21,28 @@ const AdminOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('https://hosp-backend-qz1z.onrender.com/api/orders');
-      if (response.ok) {
-        const data = await response.json();
-        setOrders(data);
-      }
+      const data = await ordersAPI.getAll();
+      setOrders(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching orders:', error);
+      setOrders([]);
     }
   };
 
   const fetchMedicines = async () => {
     try {
-      const response = await fetch('https://hosp-backend-qz1z.onrender.com/api/medicines');
-      if (response.ok) {
-        const data = await response.json();
-        setMedicines(data);
-      }
+      const data = await medicineAPI.getAll();
+      setMedicines(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching medicines:', error);
+      setMedicines([]);
     }
   };
 
   const updateOrderStatus = async (orderId, status) => {
     try {
-      const response = await fetch(`https://hosp-backend-qz1z.onrender.com/api/orders/${orderId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status })
-      });
-      if (response.ok) {
-        fetchOrders();
-      }
+      await ordersAPI.update(orderId, { status });
+      fetchOrders();
     } catch (error) {
       console.error('Error updating order:', error);
     }
@@ -59,14 +50,8 @@ const AdminOrders = () => {
 
   const updateStock = async (medicineId, newStock) => {
     try {
-      const response = await fetch(`https://hosp-backend-qz1z.onrender.com/api/medicines/${medicineId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ stock: newStock })
-      });
-      if (response.ok) {
-        fetchMedicines();
-      }
+      await medicineAPI.update(medicineId, { stock: newStock });
+      fetchMedicines();
     } catch (error) {
       console.error('Error updating stock:', error);
     }
@@ -74,20 +59,14 @@ const AdminOrders = () => {
 
   const addMedicine = async () => {
     try {
-      const response = await fetch('https://hosp-backend-qz1z.onrender.com/api/medicines', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...newMedicine,
-          price: parseFloat(newMedicine.price),
-          stock: parseInt(newMedicine.stock)
-        })
+      await medicineAPI.create({
+        ...newMedicine,
+        price: parseFloat(newMedicine.price),
+        stock: parseInt(newMedicine.stock)
       });
-      if (response.ok) {
-        setNewMedicine({ name: '', category: '', price: '', stock: '', image: '', usedFor: '' });
-        setShowAddMedicine(false);
-        fetchMedicines();
-      }
+      setNewMedicine({ name: '', category: '', price: '', stock: '', image: '', usedFor: '' });
+      setShowAddMedicine(false);
+      fetchMedicines();
     } catch (error) {
       console.error('Error adding medicine:', error);
     }
@@ -96,12 +75,8 @@ const AdminOrders = () => {
   const deleteMedicine = async (medicineId) => {
     if (window.confirm('Delete this medicine?')) {
       try {
-        const response = await fetch(`https://hosp-backend-qz1z.onrender.com/api/medicines/${medicineId}`, {
-          method: 'DELETE'
-        });
-        if (response.ok) {
-          fetchMedicines();
-        }
+        await medicineAPI.delete(medicineId);
+        fetchMedicines();
       } catch (error) {
         console.error('Error deleting medicine:', error);
       }
