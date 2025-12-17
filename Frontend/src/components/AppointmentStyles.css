@@ -1,0 +1,288 @@
+.unified-appointments {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.appointment-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  border: none;
+  background: transparent;
+  color: #666;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  color: #4A90E2;
+  border-bottom-color: #4A90E2;
+  background: rgba(74, 144, 226, 0.1);
+}
+
+.tab-btn:hover {
+  color: #4A90E2;
+  background: rgba(74, 144, 226, 0.05);
+}
+
+.loading-spinner {
+  text-align: center;
+  padding: 40px;
+  color: #4A90E2;
+  font-size: 18px;
+}
+
+.appointments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.appointment-item {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.appointment-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.appointment-item.completed {
+  border-left: 4px solid #27ae60;
+  background: #f8fff8;
+}
+
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.appointment-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 20px;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.current {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-badge.completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.appointment-details {
+  margin-bottom: 20px;
+}
+
+.appointment-details p {
+  margin: 8px 0;
+  color: #555;
+}
+
+.billing-section {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.billing-section h4 {
+  margin: 0 0 12px 0;
+  color: #333;
+  font-size: 16px;
+}
+
+.billing-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+  padding: 4px 0;
+}
+
+.billing-total {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0 0 0;
+  padding: 12px 0 0 0;
+  border-top: 2px solid #dee2e6;
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+.paid-badge {
+  display: inline-block;
+  background: #d4edda;
+  color: #155724;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.appointment-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.appointment-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-pay {
+  background: #28a745;
+  color: white;
+}
+
+.btn-pay:hover {
+  background: #218838;
+}
+
+.btn-complete {
+  background: #17a2b8;
+  color: white;
+}
+
+.btn-complete:hover {
+  background: #138496;
+}
+
+.btn-cancel {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background: #c82333;
+}
+
+.no-appointments {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  font-size: 18px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.slot-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.slot-card {
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.slot-card:hover {
+  border-color: #4A90E2;
+  transform: translateY(-2px);
+}
+
+.slot-card.selected {
+  border-color: #4A90E2;
+  background: rgba(74, 144, 226, 0.1);
+}
+
+.slot-icon {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.slot-card h4 {
+  margin: 8px 0;
+  color: #333;
+}
+
+.slot-card p {
+  margin: 4px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.slot-available {
+  display: inline-block;
+  background: #e8f5e8;
+  color: #2d5a2d;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .appointment-tabs {
+    flex-direction: column;
+  }
+  
+  .tab-btn {
+    text-align: left;
+    border-bottom: none;
+    border-left: 3px solid transparent;
+  }
+  
+  .tab-btn.active {
+    border-left-color: #4A90E2;
+    border-bottom: none;
+  }
+  
+  .appointment-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .appointment-actions {
+    flex-direction: column;
+  }
+  
+  .appointment-actions button {
+    width: 100%;
+  }
+}
