@@ -1,9 +1,10 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://hosp-backend-qz1z.onrender.com/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://hosp-backend-qz1z.onrender.com';
+const API_URL = `${API_BASE_URL}/api`;
 
 // Auth API calls
 export const authAPI = {
     register: async (userData) => {
-        const response = await fetch(`${API_BASE_URL}/auth/register`, {
+        const response = await fetch(`${API_URL}/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData)
@@ -12,7 +13,7 @@ export const authAPI = {
     },
 
     login: async (credentials) => {
-        const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        const response = await fetch(`${API_URL}/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(credentials)
@@ -28,7 +29,7 @@ export const authAPI = {
 // Appointment API calls
 export const appointmentAPI = {
     create: async (appointmentData) => {
-        const response = await fetch(`${API_BASE_URL}/appointments`, {
+        const response = await fetch(`${API_URL}/appointments`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(appointmentData)
@@ -37,17 +38,17 @@ export const appointmentAPI = {
     },
 
     getAll: async () => {
-        const response = await fetch(`${API_BASE_URL}/appointments`);
+        const response = await fetch(`${API_URL}/appointments`);
         return response.json();
     },
 
     getUserAppointments: async (userId) => {
-        const response = await fetch(`${API_BASE_URL}/appointments/user/${userId}`);
+        const response = await fetch(`${API_URL}/appointments/user/${userId}`);
         return response.json();
     },
 
     update: async (id, data) => {
-        const response = await fetch(`${API_BASE_URL}/appointments/${id}`, {
+        const response = await fetch(`${API_URL}/appointments/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -56,7 +57,7 @@ export const appointmentAPI = {
     },
 
     delete: async (id) => {
-        const response = await fetch(`${API_BASE_URL}/appointments/${id}`, {
+        const response = await fetch(`${API_URL}/appointments/${id}`, {
             method: 'DELETE'
         });
         return response.json();
@@ -66,12 +67,12 @@ export const appointmentAPI = {
 // User API calls
 export const userAPI = {
     getAll: async () => {
-        const response = await fetch(`${API_BASE_URL}/users`);
+        const response = await fetch(`${API_URL}/users`);
         return response.json();
     },
 
     delete: async (id) => {
-        const response = await fetch(`${API_BASE_URL}/users/${id}`, {
+        const response = await fetch(`${API_URL}/users/${id}`, {
             method: 'DELETE'
         });
         return response.json();
@@ -82,7 +83,7 @@ export const userAPI = {
 export const emergencyAPI = {
     create: async (emergencyData) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/emergencies`, {
+            const response = await fetch(`${API_URL}/emergencies`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(emergencyData)
@@ -101,17 +102,17 @@ export const emergencyAPI = {
     },
 
     getAll: async () => {
-        const response = await fetch(`${API_BASE_URL}/emergencies`);
+        const response = await fetch(`${API_URL}/emergencies`);
         return response.json();
     },
 
     getUserEmergencies: async (userId) => {
-        const response = await fetch(`${API_BASE_URL}/emergencies/user/${userId}`);
+        const response = await fetch(`${API_URL}/emergencies/user/${userId}`);
         return response.json();
     },
 
     update: async (id, data) => {
-        const response = await fetch(`${API_BASE_URL}/emergencies/${id}`, {
+        const response = await fetch(`${API_URL}/emergencies/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -120,7 +121,7 @@ export const emergencyAPI = {
     },
 
     delete: async (id) => {
-        const response = await fetch(`${API_BASE_URL}/emergencies/${id}`, {
+        const response = await fetch(`${API_URL}/emergencies/${id}`, {
             method: 'DELETE'
         });
         return response.json();
@@ -130,12 +131,12 @@ export const emergencyAPI = {
 // Medicine API calls
 export const medicineAPI = {
     getAll: async () => {
-        const response = await fetch(`${API_BASE_URL}/medicines`);
+        const response = await fetch(`${API_URL}/medicines`);
         return response.json();
     },
 
     create: async (medicineData) => {
-        const response = await fetch(`${API_BASE_URL}/medicines`, {
+        const response = await fetch(`${API_URL}/medicines`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(medicineData)
@@ -144,7 +145,7 @@ export const medicineAPI = {
     },
 
     update: async (id, data) => {
-        const response = await fetch(`${API_BASE_URL}/medicines/${id}`, {
+        const response = await fetch(`${API_URL}/medicines/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -153,14 +154,14 @@ export const medicineAPI = {
     },
 
     delete: async (id) => {
-        const response = await fetch(`${API_BASE_URL}/medicines/${id}`, {
+        const response = await fetch(`${API_URL}/medicines/${id}`, {
             method: 'DELETE'
         });
         return response.json();
     },
 
     getLowStock: async () => {
-        const response = await fetch(`${API_BASE_URL}/medicines/low-stock`);
+        const response = await fetch(`${API_URL}/medicines/low-stock`);
         return response.json();
     }
 };
@@ -168,12 +169,12 @@ export const medicineAPI = {
 // Orders API calls
 export const ordersAPI = {
     getAll: async () => {
-        const response = await fetch(`${API_BASE_URL}/orders`);
+        const response = await fetch(`${API_URL}/orders`);
         return response.json();
     },
 
     create: async (orderData) => {
-        const response = await fetch(`${API_BASE_URL}/orders`, {
+        const response = await fetch(`${API_URL}/orders`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(orderData)
@@ -182,7 +183,7 @@ export const ordersAPI = {
     },
 
     update: async (id, data) => {
-        const response = await fetch(`${API_BASE_URL}/orders/${id}`, {
+        const response = await fetch(`${API_URL}/orders/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -191,7 +192,7 @@ export const ordersAPI = {
     },
 
     delete: async (id) => {
-        const response = await fetch(`${API_BASE_URL}/orders/${id}`, {
+        const response = await fetch(`${API_URL}/orders/${id}`, {
             method: 'DELETE'
         });
         return response.json();
