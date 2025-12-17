@@ -19,6 +19,32 @@
   position: fixed;
   height: 100vh;
   overflow-y: auto;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.mobile-close {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 15px;
 }
 
 .admin-header {
@@ -1331,47 +1357,53 @@
 }
 
 @media (max-width: 600px) {
-  .admin-panel {
-    flex-direction: column;
-  }
-  
-  .admin-main-container {
-    flex-direction: column;
-  }
-  
   .admin-sidebar {
-    width: 100%;
-    position: relative;
-    height: auto;
-    order: 1;
+    transform: translateX(-100%);
+    width: 280px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1001;
+  }
+  
+  .admin-sidebar.mobile-open {
+    transform: translateX(0);
   }
   
   .admin-content {
     margin-left: 0;
     padding: 15px;
-    order: 2;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .mobile-close {
+    display: block;
   }
   
   .admin-nav {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 10px;
+    padding: 20px 0;
   }
   
   .admin-nav a {
-    flex: 1;
-    min-width: 120px;
-    text-align: center;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
-    border-left: none;
-    border-bottom: 3px solid transparent;
+    display: block;
+    padding: 15px 25px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-left: 3px solid transparent;
   }
   
   .admin-nav a.active {
-    border-bottom-color: #4CAF50;
-    border-left: none;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border-left-color: #4CAF50;
   }
   
   .dashboard-stats {

@@ -24,6 +24,7 @@ function AdminPanel({
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [newDoctor, setNewDoctor] = useState({ name: '', specialty: '', experience: '', image: '' });
   const [showAddDoctor, setShowAddDoctor] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   
   // Analytics calculations
   const totalSales = appointments.reduce((sum, apt) => sum + ((apt.consultationFee || 1500) + (apt.bedCharges || 0) + (apt.medicineCharges || 0) + (apt.labCharges || 0)), 0);
@@ -112,9 +113,10 @@ function AdminPanel({
   return (
     <div className="admin-panel">
       <div className="admin-main-container">
-        <div className="admin-sidebar">
+        <div className={`admin-sidebar ${sidebarOpen ? 'mobile-open' : ''}`}>
         <div className="admin-header">
           <h2>🛠️ Admin Panel</h2>
+          <button className="mobile-close" onClick={() => setSidebarOpen(false)}>×</button>
         </div>
         <nav className="admin-nav">
           <a onClick={() => setIsAdminMode(false)} className="back-btn">← Back to Main</a>
@@ -128,6 +130,7 @@ function AdminPanel({
         </div>
 
         <div className="admin-content">
+          <button className="mobile-menu-btn" onClick={() => setSidebarOpen(true)}>☰ Menu</button>
         {adminPage === 'dashboard' && (
           <div className="dashboard">
             <h1>Hospital Dashboard</h1>
@@ -425,7 +428,7 @@ function AdminPanel({
         )}
 
         {adminPage === 'pharmacy' && (
-          <AdminPharmacy />
+          <AdminOrders />
         )}
 
         {adminPage === 'doctors' && (
