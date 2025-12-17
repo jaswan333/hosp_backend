@@ -2,9 +2,12 @@ const Medicine = require('../Module/MedicineModel');
 
 const getMedicines = async (req, res) => {
     try {
+        console.log('Fetching medicines from database...');
         const medicines = await Medicine.find().sort({ name: 1 });
+        console.log(`Found ${medicines.length} medicines`);
         res.json(medicines);
     } catch (error) {
+        console.error('Error fetching medicines:', error);
         res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
@@ -54,11 +57,10 @@ const deleteMedicine = async (req, res) => {
 
 const getLowStock = async (req, res) => {
     try {
-        const medicines = await Medicine.find({
-            $expr: { $lte: ['$stock', '$lowStockThreshold'] }
-        }).sort({ stock: 1 });
+        const medicines = await Medicine.find({ stock: { $lt: 10 } }).sort({ stock: 1 });
         res.json(medicines);
     } catch (error) {
+        console.error('Error fetching low stock medicines:', error);
         res.status(500).json({ message: 'Server error', error: error.message });
     }
 };

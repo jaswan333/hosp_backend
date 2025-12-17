@@ -67,7 +67,19 @@ console.log('- /api/medicines');
 console.log('- /api/orders');
 
 app.get('/', (req, res) => {
-    res.json({ message: 'Hospital Management System API' });
+    res.json({ 
+        message: 'Hospital Management System API',
+        status: 'running',
+        timestamp: new Date().toISOString()
+    });
+});
+
+app.get('/api/health', (req, res) => {
+    res.json({ 
+        status: 'OK',
+        database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
+        timestamp: new Date().toISOString()
+    });
 });
 
 app.listen(PORT, () => {
