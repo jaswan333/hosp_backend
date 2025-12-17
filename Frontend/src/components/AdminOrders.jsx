@@ -20,163 +20,31 @@ const AdminOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('http://localhost:3002/api/orders');
+      const response = await fetch('https://hosp-backend-qz1z.onrender.com/api/orders');
       if (response.ok) {
         const data = await response.json();
         setOrders(data);
-      } else {
-        // Fallback data if backend is not available
-        setOrders([
-          {
-            _id: 'order1',
-            userName: 'Dr. Rajesh Kumar',
-            userPhone: '9876543210',
-            userEmail: 'rajesh.kumar@gmail.com',
-            orderDate: new Date(),
-            status: 'pending',
-            deliveryAddress: '123 Medical Colony, Mumbai',
-            items: [
-              { name: 'Paracetamol', quantity: 2, price: 25, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=100&q=80' },
-              { name: 'Vitamin D3', quantity: 1, price: 180, image: 'https://images.unsplash.com/photo-1550572017-edd951aa8ca6?w=100&q=80' }
-            ],
-            total: 230
-          },
-          {
-            _id: 'order2',
-            userName: 'Mrs. Priya Sharma',
-            userPhone: '9123456789',
-            userEmail: 'priya.sharma@yahoo.com',
-            orderDate: new Date(Date.now() - 86400000),
-            status: 'confirmed',
-            deliveryAddress: '456 Health Street, Delhi',
-            items: [
-              { name: 'Cetirizine', quantity: 1, price: 45, image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=100&q=80' },
-              { name: 'Amoxicillin', quantity: 2, price: 120, image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=100&q=80' }
-            ],
-            total: 285
-          },
-          {
-            _id: 'order3',
-            userName: 'Mr. Amit Patel',
-            userPhone: '9988776655',
-            userEmail: 'amit.patel@hotmail.com',
-            orderDate: new Date(Date.now() - 172800000),
-            status: 'delivered',
-            deliveryAddress: '789 Care Avenue, Bangalore',
-            items: [
-              { name: 'Omeprazole', quantity: 1, price: 85, image: 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=100&q=80' }
-            ],
-            total: 85
-          }
-        ]);
       }
     } catch (error) {
       console.error('Error fetching orders:', error);
-      // Fallback data if network error
-      setOrders([
-        {
-          _id: 'order1',
-          userName: 'John Doe',
-          userPhone: '9876543210',
-          orderDate: new Date(),
-          status: 'pending',
-          items: [
-            { name: 'Paracetamol', quantity: 2, price: 25 },
-            { name: 'Vitamin D3', quantity: 1, price: 180 }
-          ],
-          total: 230
-        },
-        {
-          _id: 'order2',
-          userName: 'Jane Smith',
-          userPhone: '9123456789',
-          orderDate: new Date(Date.now() - 86400000),
-          status: 'confirmed',
-          items: [
-            { name: 'Cetirizine', quantity: 1, price: 45 }
-          ],
-          total: 45
-        }
-      ]);
     }
   };
 
   const fetchMedicines = async () => {
     try {
-      const response = await fetch('http://localhost:3002/api/medicines');
+      const response = await fetch('https://hosp-backend-qz1z.onrender.com/api/medicines');
       if (response.ok) {
         const data = await response.json();
         setMedicines(data);
-      } else {
-        // Fallback data if backend is not available
-        setMedicines([
-          {
-            _id: '1',
-            name: 'Paracetamol',
-            category: 'Pain Relief',
-            price: 25,
-            stock: 150,
-            image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200&q=80',
-            usedFor: 'Pain relief and fever reduction'
-          },
-          {
-            _id: '2',
-            name: 'Amoxicillin',
-            category: 'Antibiotics',
-            price: 120,
-            stock: 8,
-            image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=200&q=80',
-            usedFor: 'Bacterial infections treatment'
-          },
-          {
-            _id: '3',
-            name: 'Cetirizine',
-            category: 'Allergy',
-            price: 45,
-            stock: 75,
-            image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=200&q=80',
-            usedFor: 'Allergy and hay fever relief'
-          }
-        ]);
       }
     } catch (error) {
       console.error('Error fetching medicines:', error);
-      // Fallback data if network error
-      setMedicines([
-        {
-          _id: '1',
-          name: 'Paracetamol',
-          category: 'Pain Relief',
-          price: 25,
-          stock: 150,
-          image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200&q=80',
-          usedFor: 'Pain relief and fever reduction'
-        },
-        {
-          _id: '2',
-          name: 'Amoxicillin',
-          category: 'Antibiotics',
-          price: 120,
-          stock: 8,
-          image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=200&q=80',
-          usedFor: 'Bacterial infections treatment'
-        },
-        {
-          _id: '3',
-          name: 'Cetirizine',
-          category: 'Allergy',
-          price: 45,
-          stock: 75,
-          image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=200&q=80',
-          usedFor: 'Allergy and hay fever relief'
-        }
-      ]);
     }
   };
 
   const updateOrderStatus = async (orderId, status) => {
     try {
-      const response = await fetch(`http://localhost:3002/api/orders/${orderId}`, {
+      const response = await fetch(`https://hosp-backend-qz1z.onrender.com/api/orders/${orderId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status })
@@ -191,7 +59,7 @@ const AdminOrders = () => {
 
   const updateStock = async (medicineId, newStock) => {
     try {
-      const response = await fetch(`http://localhost:3002/api/medicines/${medicineId}`, {
+      const response = await fetch(`https://hosp-backend-qz1z.onrender.com/api/medicines/${medicineId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ stock: newStock })
@@ -206,7 +74,7 @@ const AdminOrders = () => {
 
   const addMedicine = async () => {
     try {
-      const response = await fetch('http://localhost:3002/api/medicines', {
+      const response = await fetch('https://hosp-backend-qz1z.onrender.com/api/medicines', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -228,7 +96,7 @@ const AdminOrders = () => {
   const deleteMedicine = async (medicineId) => {
     if (window.confirm('Delete this medicine?')) {
       try {
-        const response = await fetch(`http://localhost:3002/api/medicines/${medicineId}`, {
+        const response = await fetch(`https://hosp-backend-qz1z.onrender.com/api/medicines/${medicineId}`, {
           method: 'DELETE'
         });
         if (response.ok) {
@@ -243,7 +111,7 @@ const AdminOrders = () => {
   return (
     <div className="admin-orders">
       <div className="admin-header">
-        <h1>📦 Orders & Inventory Management</h1>
+        <h1>🏥 Admin Dashboard</h1>
         <div className="stats">
           <span>📦 {orders.length} Orders</span>
           <span>💊 {medicines.length} Medicines</span>
@@ -265,42 +133,19 @@ const AdminOrders = () => {
                       <span className={`status ${order.status}`}>{order.status}</span>
                     </div>
                     <div className="order-details">
-                      <div className="customer-info">
-                        <div className="customer-avatar">👤</div>
-                        <div>
-                          <p><strong>Customer:</strong> {order.userName}</p>
-                          <p><strong>Phone:</strong> {order.userPhone}</p>
-                          <p><strong>Email:</strong> {order.userEmail}</p>
-                          <p><strong>Address:</strong> {order.deliveryAddress}</p>
-                        </div>
-                      </div>
-                      <p><strong>Order Date:</strong> {new Date(order.orderDate).toLocaleDateString()}</p>
+                      <p><strong>Customer:</strong> {order.userName}</p>
+                      <p><strong>Phone:</strong> {order.userPhone}</p>
+                      <p><strong>Date:</strong> {new Date(order.orderDate).toLocaleDateString()}</p>
                       <div className="order-items">
-                        <strong>Items Ordered:</strong>
+                        <strong>Items:</strong>
                         {order.items.map((item, index) => (
                           <div key={index} className="order-item">
-                            <img src={item.image} alt={item.name} className="item-image" />
-                            <div className="item-details">
-                              <span className="item-name">{item.name}</span>
-                              <span className="item-qty">Qty: {item.quantity}</span>
-                              <span className="item-price">₹{item.price} each</span>
-                            </div>
-                            <div className="item-total">₹{item.price * item.quantity}</div>
+                            {item.name} × {item.quantity} = ₹{item.price * item.quantity}
                           </div>
                         ))}
                       </div>
-                      <div className="order-summary">
-                        <div className="summary-row">
-                          <span>Subtotal:</span>
-                          <span>₹{order.total - 50}</span>
-                        </div>
-                        <div className="summary-row">
-                          <span>Delivery:</span>
-                          <span>₹50</span>
-                        </div>
-                        <div className="order-total">
-                          <strong>Total: ₹{order.total.toFixed(2)}</strong>
-                        </div>
+                      <div className="order-total">
+                        <strong>Total: ₹{order.total.toFixed(2)}</strong>
                       </div>
                     </div>
                     <div className="order-actions">
@@ -481,16 +326,10 @@ const AdminOrders = () => {
 
         .order-card {
           background: white;
-          border-radius: 15px;
-          padding: 25px;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+          border-radius: 10px;
+          padding: 20px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
           border: 1px solid #eee;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .order-card:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .order-header {
@@ -533,85 +372,12 @@ const AdminOrders = () => {
           margin: 10px 0;
         }
 
-        .customer-info {
-          display: flex;
-          align-items: center;
-          gap: 15px;
-          margin-bottom: 15px;
-          padding: 15px;
-          background: #f8f9fa;
-          border-radius: 8px;
-        }
-
-        .customer-avatar {
-          font-size: 2rem;
-          width: 50px;
-          height: 50px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: #e3f2fd;
-          border-radius: 50%;
-        }
-
         .order-item {
-          display: flex;
-          align-items: center;
-          gap: 15px;
-          padding: 12px;
-          margin: 8px 0;
-          background: white;
-          border: 1px solid #e0e0e0;
-          border-radius: 8px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .item-image {
-          width: 50px;
-          height: 50px;
-          object-fit: cover;
-          border-radius: 6px;
-        }
-
-        .item-details {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-        }
-
-        .item-name {
-          font-weight: 600;
-          color: #2c3e50;
-        }
-
-        .item-qty {
-          font-size: 0.9rem;
-          color: #666;
-        }
-
-        .item-price {
-          font-size: 0.9rem;
-          color: #27ae60;
-        }
-
-        .item-total {
-          font-weight: 600;
-          color: #27ae60;
-          font-size: 1.1rem;
-        }
-
-        .order-summary {
-          margin-top: 15px;
-          padding-top: 15px;
-          border-top: 2px solid #e0e0e0;
-        }
-
-        .summary-row {
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 8px;
-          color: #666;
+          background: #f8f9fa;
+          padding: 5px 10px;
+          margin: 2px 0;
+          border-radius: 3px;
+          font-size: 0.8rem;
         }
 
         .order-total {
@@ -815,21 +581,6 @@ const AdminOrders = () => {
           
           .form-grid {
             grid-template-columns: 1fr;
-          }
-
-          .customer-info {
-            flex-direction: column;
-            text-align: center;
-          }
-
-          .order-item {
-            flex-direction: column;
-            text-align: center;
-            gap: 10px;
-          }
-
-          .item-details {
-            align-items: center;
           }
         }
       `}</style>

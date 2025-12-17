@@ -64,7 +64,7 @@ const SimplePharmacy = () => {
 
   const fetchMedicines = async () => {
     try {
-      const response = await fetch('http://localhost:3002/api/medicines');
+      const response = await fetch('https://hosp-backend-qz1z.onrender.com/api/medicines');
       if (response.ok) {
         const data = await response.json();
         setMedicines(data.length > 0 ? data : commonMedicines);
@@ -129,7 +129,7 @@ const SimplePharmacy = () => {
 
       console.log('Placing order:', orderData);
       
-      const response = await fetch('http://localhost:3002/api/orders', {
+      const response = await fetch('https://hosp-backend-qz1z.onrender.com/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)
