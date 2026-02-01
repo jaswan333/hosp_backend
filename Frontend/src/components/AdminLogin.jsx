@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './Auth.css';
 
 const ADMIN_CREDENTIALS = [
-  { username: 'suriya', password: 'suriya@123', name: 'Suriya', role: 'Chief Administrator' },
+  { username: 'surya', password: 'surya@123', name: 'Surya', role: 'Chief Administrator' },
   { username: 'jaswan', password: 'jaswan333', name: 'Jaswan', role: 'System Administrator' }
 ];
 
